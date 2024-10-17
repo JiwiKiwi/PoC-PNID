@@ -1,0 +1,166 @@
+SwitchDMZNet#sh run
+Building configuration...
+
+Current configuration : 3456 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname SwitchDMZNet
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+!
+no aaa new-model
+system mtu routing 1500
+!
+!
+no ip domain-lookup
+ip domain-name TropoMetrics.nl
+!
+!
+crypto pki trustpoint TP-self-signed-256132352
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-256132352
+ revocation-check none
+ rsakeypair TP-self-signed-256132352
+!
+!
+crypto pki certificate chain TP-self-signed-256132352
+ certificate self-signed 01
+  30820246 308201AF A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 32353631 33323335 32301E17 0D393330 33303130 30303135
+  375A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3235 36313332
+  33353230 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100
+  B69D1BED 1426F6C4 7CB3F905 CC884918 709FD9CD D03E7AFD 00116C14 2C4F7B6B
+  83160253 C34BB53A 111D4BCA 62809930 399F9516 271B7703 DF017ED2 FEB04BD6
+  1BD855D8 05BC19F1 EEAC1550 97994593 812DC38E F958C660 5B1A35C2 DB045119
+  CFD7F585 2DC550B2 799AB574 9B8BEBB4 93425122 A54D5002 98A93DBB 899DBE55
+  02030100 01A37030 6E300F06 03551D13 0101FF04 05300301 01FF301B 0603551D
+  11041430 12821053 77697463 68576562 73657276 65722E30 1F060355 1D230418
+  30168014 8DC8B39D 5782B867 B3058A76 6800B3E3 001AB272 301D0603 551D0E04
+  1604148D C8B39D57 82B867B3 058A7668 00B3E300 1AB27230 0D06092A 864886F7
+  0D010104 05000381 810038B4 A42F7F97 7086ED26 1A2C67FF 6883745B 5228BA32
+  A193649A E4E53137 C318286D 745023F7 90304DA8 740D40F6 5731CD39 3F95B819
+  341DCC6B 61B8D615 07AC6014 7422039F 43D4B140 C12FA3D7 E9D63D26 5F99CDA5
+  CAA418DA A4E81F5B 7C816989 EFB7AE91 C11D39FA CE9E6D3C 0135ABAA 1966B742
+  8013D07D E475F363 3B15
+  quit
+!
+!
+!
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+interface FastEthernet0/1
+ switchport access vlan 100
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/2
+ shutdown
+!
+interface FastEthernet0/3
+ shutdown
+!
+interface FastEthernet0/4
+ shutdown
+!
+interface FastEthernet0/5
+ shutdown
+!
+interface FastEthernet0/6
+ shutdown
+!
+interface FastEthernet0/7
+ shutdown
+!
+interface FastEthernet0/8
+ shutdown
+!
+interface FastEthernet0/9
+ shutdown
+!
+interface FastEthernet0/10
+ shutdown
+!
+interface FastEthernet0/11
+ shutdown
+!
+interface FastEthernet0/12
+ shutdown
+!
+interface FastEthernet0/13
+ shutdown
+!
+interface FastEthernet0/14
+ shutdown
+!
+interface FastEthernet0/15
+ shutdown
+!
+interface FastEthernet0/16
+ shutdown
+!
+interface FastEthernet0/17
+ shutdown
+!
+interface FastEthernet0/18
+ shutdown
+!
+interface FastEthernet0/19
+ shutdown
+!
+interface FastEthernet0/20
+ shutdown
+!
+interface FastEthernet0/21
+ shutdown
+!
+interface FastEthernet0/22
+ shutdown
+!
+interface FastEthernet0/23
+ shutdown
+!
+interface FastEthernet0/24
+ shutdown
+!
+interface GigabitEthernet0/1
+ switchport mode trunk
+ spanning-tree vlan 100 port-priority 0
+!
+interface GigabitEthernet0/2
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip http server
+ip http secure-server
+banner motd ^CC Unauthorised people are not admitted, and will be prosecuted ^C
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+end
+
+SwitchDMZNet#$
